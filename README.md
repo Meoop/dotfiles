@@ -1,1 +1,4 @@
-# My Vim configuration
+# My configuration files
+
+Your dotfiles are how you personalize your system. These are mine.
+
