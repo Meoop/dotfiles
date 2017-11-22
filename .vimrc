@@ -30,6 +30,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }  " Markdown previews
 Plug 'w0rp/ale'                             " Asynchronous Lint Engine for NeoVim and Vim8
 Plug 'maralla/completor.vim'                " Asynchronous code completion framework for vim8
+Plug 'Raimondi/delimitMate'                 " Auto-completion for quotes, parens, brackets, etc
 Plug 'Chiel92/vim-autoformat'               " Code formatting in Vim
 Plug 'scrooloose/nerdcommenter'             " Code comments
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
