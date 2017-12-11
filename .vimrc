@@ -30,6 +30,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }  " Markdown previews
 Plug 'w0rp/ale'                             " Asynchronous Lint Engine for NeoVim and Vim8
 Plug 'maralla/completor.vim'                " Asynchronous code completion framework for vim8
+Plug 'SirVer/ultisnips'                     " The ultimate snippet solution for vim.
+Plug 'honza/vim-snippets'                   " vim-snipmate default snippets
+Plug 'fatih/vim-go'                         " Go development plugin for Vim
 Plug 'Raimondi/delimitMate'                 " Auto-completion for quotes, parens, brackets, etc
 Plug 'Chiel92/vim-autoformat'               " Code formatting in Vim
 Plug 'scrooloose/nerdcommenter'             " Code comments
