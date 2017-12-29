@@ -21,8 +21,7 @@ endif
 
 " Specify a directory for plugins
 call plug#begin('~/.vim/plugged')
-Plug 'altercation/vim-colors-solarized'     " Colorscheme for the vim
-Plug 'captbaritone/molokai'                 " Colorscheme for the vim
+Plug 'morhetz/gruvbox'                      " Colorscheme for the vim
 Plug 'bling/vim-airline'                    " Statusline
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'               " Shows git diff
@@ -45,6 +44,8 @@ filetype plugin indent on
 " ---------------------------------------------------------------------------
 "  Base Option
 " ---------------------------------------------------------------------------
+set background=dark
+colorscheme gruvbox
 set t_Co=256                    " enable 256 colors
 set encoding=utf-8 nobomb       " Use UTF-8 without BOM
 set nohidden                    " Don't allow buffers to exist in the background
@@ -84,8 +85,8 @@ set foldopen=block,hor,mark,percent,quickfix,search,tag,undo,jump
 " Set the leader key to <space> instead of \ because it's easier to reach
 let mapleader = "\<Space>"
 
-set listchars=tab:▸\ ,trail:•   " Highlight tabs and trailing spaces
-set list                        " Make whitespace characters visible
+" set listchars=tab:▸\ ,trail:•   " Highlight tabs and trailing spaces
+" set list                        " Make whitespace characters visible
 
 " Statusline
 let g:airline_theme='papercolor'
