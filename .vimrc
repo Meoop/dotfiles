@@ -22,6 +22,7 @@ endif
 " Specify a directory for plugins
 call plug#begin('~/.vim/plugged')
 Plug 'morhetz/gruvbox'                      " Colorscheme for the vim
+Plug 'rakr/vim-one'                         " Colorscheme for the vim
 Plug 'bling/vim-airline'                    " Statusline
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'               " Shows git diff
@@ -29,6 +30,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }  " Markdown previews
 Plug 'w0rp/ale'                             " Asynchronous Lint Engine for NeoVim and Vim8
 Plug 'maralla/completor.vim'                " Asynchronous code completion framework for vim8
+Plug 'maralla/completor-neosnippet'
 Plug 'SirVer/ultisnips'                     " The ultimate snippet solution for vim.
 Plug 'honza/vim-snippets'                   " vim-snipmate default snippets
 Plug 'fatih/vim-go'                         " Go development plugin for Vim
@@ -44,8 +46,8 @@ filetype plugin indent on
 " ---------------------------------------------------------------------------
 "  Base Option
 " ---------------------------------------------------------------------------
-set background=dark
-colorscheme gruvbox
+set background=light
+colorscheme one
 set t_Co=256                    " enable 256 colors
 set encoding=utf-8 nobomb       " Use UTF-8 without BOM
 set nohidden                    " Don't allow buffers to exist in the background
@@ -53,6 +55,7 @@ set ttyfast                     " Indicates a fast terminal connection
 set history=1000                " Remember the last 1000 :ex commands
 set secure                      " Disable unsafe commands in local .vimrc files
 set nowrap                      " To display long lines as just one line
+set backspace=indent,eol,start  " Backspace key won't move from current line
 
 syntax enable                   " Enable syntax highlighting
 syntax on
@@ -89,14 +92,14 @@ let mapleader = "\<Space>"
 " set list                        " Make whitespace characters visible
 
 " Statusline
-let g:airline_theme='papercolor'
+let g:airline_theme='one'
 
 " Code Autoformat
 noremap <F6> :Autoformat<CR>
 
 " When completing, fill with the longest common string
 " Auto select the first option
-set completeopt=longest,menuone
+let g:completor_complete_options = 'longest,menuone,noselect,preview'
 
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
@@ -124,6 +127,9 @@ let g:tagbar_autofocus = 1
 let g:tagbar_compact=1
 let g:tagbar_sort = 0
 
+" vim-gitgutter
+set updatetime=300
+let g:gitgutter_terminal_reports_focus=0
 
 " Make configuration changes effective immediately
 autocmd BufWritePost $MYVIMRC source $MYVIMRC
