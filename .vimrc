@@ -34,6 +34,7 @@ Plug 'maralla/completor-neosnippet'
 Plug 'SirVer/ultisnips'                     " The ultimate snippet solution for vim.
 Plug 'honza/vim-snippets'                   " vim-snipmate default snippets
 Plug 'fatih/vim-go'                         " Go development plugin for Vim
+Plug 'buoto/gotests-vim'                    " Vim plugin for gotests"
 Plug 'Raimondi/delimitMate'                 " Auto-completion for quotes, parens, brackets, etc
 Plug 'Chiel92/vim-autoformat'               " Code formatting in Vim
 Plug 'scrooloose/nerdcommenter'             " Code comments
