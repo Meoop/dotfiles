@@ -1,0 +1,22 @@
+FROM alpine:latest
+LABEL maintainer="yilei <yilei108@gmaill.com>"
+
+RUN set -ex \
+	&& apk add --no-cache bash curl tzdata ca-certificates \
+	&& rm -rf /var/cache/apk/* \
+	&& mkdir -p /etc/v2ray \
+	&& mkdir -p /var/log/v2ray \
+	&& mkdir -p /tmp/v2ray \
+    && V2RAY_VERSION=$(curl https://api.github.com/repos/v2ray/v2ray-core/releases/latest | grep 'tag_name' | sed -E 's/.*"([^"]+)".*/\1/') \
+    && curl -L -H "Cache-Control: no-cache" -o /tmp/v2ray-linux-64.zip https://github.com/v2ray/v2ray-core/releases/download/${V2RAY_VERSION}/v2ray-linux-64.zip \
+    && unzip /tmp/v2ray-linux-64.zip -d /tmp/v2ray \
+    && mv /tmp/v2ray/v2ray /usr/bin/v2ray \
+    && mv /tmp/v2ray/v2ctl /usr/bin/v2ctl \
+    && mv /tmp/v2ray/geoip.dat /usr/bin/geoip.dat \
+    && mv /tmp/v2ray/geosite.dat /usr/bin/geosite.dat \
+    && mv /tmp/v2ray/config.json /etc/v2ray/config.json \
+    && rm -rf /tmp/v2ray /tmp/v2ray-linux-64.zip
+
+ENV TZ=Asia/Shanghai
+
+CMD [ "v2ray", "-config", "/etc/v2ray/config.json" ]

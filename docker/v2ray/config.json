@@ -1,0 +1,41 @@
+{
+  "log": {
+    "loglevel": "warning"
+   },
+  "inbounds": [{
+    "port": 9090,
+    "protocol": "vmess",
+    "settings": {
+      "clients": [
+        {
+          "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+          "level": 1,
+          "alterId": 60
+        }
+      ]
+    },
+    "streamSettings": {
+       "network": "ws",
+       "wsSettings": {
+       "path": "/yar2v"
+       }
+    }
+  }],
+  "outbounds": [{
+    "protocol": "freedom",
+    "settings": {}
+  },{
+    "protocol": "blackhole",
+    "settings": {},
+    "tag": "blocked"
+  }],
+  "routing": {
+    "rules": [
+      {
+        "type": "field",
+        "ip": ["geoip:private"],
+        "outboundTag": "blocked"
+      }
+    ]
+  }
+}

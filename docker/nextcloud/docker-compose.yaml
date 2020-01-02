@@ -1,8 +1,9 @@
-version: '2'
+version: '3.7'
 
 services:
   nextcloud-db:
     image: mariadb
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
     restart: always
     volumes:
       - ./nextcloud-db:/var/lib/mysql
@@ -16,14 +17,22 @@ services:
     volumes:
       - ./nextcloud:/var/www/html
     restart: always
-    ports:
-      - 8080:80
     environment:
       - MYSQL_HOST=nextcloud-db
       - NEXTCLOUD_ADMIN_USER=admin
-      - NEXTCLOUD_ADMIN_PASSWORD=123123
+      - NEXTCLOUD_ADMIN_PASSWORD=meoop1099493182
+      - VIRTUAL_HOST=nextcloud.meoop.me
+      - LETSENCRYPT_HOST=nextcloud.meoop.me
+      - LETSENCRYPT_EMAIL=yilei108@gmail.com
     env_file:
       - db.env
     depends_on:
       - nextcloud-db
+    networks:
+      - nginx-proxy
+      - default
 
+networks:
+  nginx-proxy:
+    external:
+      name: nginx-proxy
