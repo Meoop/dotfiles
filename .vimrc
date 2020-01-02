@@ -31,10 +31,11 @@ Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }  " Markdown previews
 Plug 'w0rp/ale'                             " Asynchronous Lint Engine for NeoVim and Vim8
 Plug 'maralla/completor.vim'                " Asynchronous code completion framework for vim8
 Plug 'maralla/completor-neosnippet'
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --go-completer',  'for': ['c', 'cpp', 'go'] }
 Plug 'SirVer/ultisnips'                     " The ultimate snippet solution for vim.
 Plug 'honza/vim-snippets'                   " vim-snipmate default snippets
 Plug 'fatih/vim-go'                         " Go development plugin for Vim
-Plug 'buoto/gotests-vim'                    " Vim plugin for gotests"
+Plug 'buoto/gotests-vim'                    " Vim plugin for gotests
 Plug 'Raimondi/delimitMate'                 " Auto-completion for quotes, parens, brackets, etc
 Plug 'Chiel92/vim-autoformat'               " Code formatting in Vim
 Plug 'scrooloose/nerdcommenter'             " Code comments
@@ -47,8 +48,8 @@ filetype plugin indent on
 " ---------------------------------------------------------------------------
 "  Base Option
 " ---------------------------------------------------------------------------
-set background=light
-colorscheme one
+set background=dark
+colorscheme gruvbox
 set t_Co=256                    " enable 256 colors
 set encoding=utf-8 nobomb       " Use UTF-8 without BOM
 set nohidden                    " Don't allow buffers to exist in the background
@@ -98,9 +99,12 @@ let g:airline_theme='one'
 " Code Autoformat
 noremap <F6> :Autoformat<CR>
 
-" When completing, fill with the longest common string
-" Auto select the first option
-let g:completor_complete_options = 'longest,menuone,noselect,preview'
+" Use guru for jumping to definition
+let g:completor_go_guru_binary = 'guru'
+" Use goimports to format code
+let g:completor_go_gofmt_binary = 'goimports'
+" Format file after write to buffer:
+autocmd BufWritePost *.go :call completor#do('format')
 
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
