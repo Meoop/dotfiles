@@ -10,10 +10,10 @@ services:
     labels:
       com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: "true"
     volumes:
-      - ./certs:/etc/nginx/certs:ro
-      - ./conf.d:/etc/nginx/conf.d
-      - ./vhost.d:/etc/nginx/vhost.d
-      - ./html:/usr/share/nginx/html
+      - ./data/certs:/etc/nginx/certs:ro
+      - ./data/conf.d:/etc/nginx/conf.d
+      - ./data/vhost.d:/etc/nginx/vhost.d
+      - ./data/html:/usr/share/nginx/html
       - /var/run/docker.sock:/tmp/docker.sock:ro
     networks:
       - nginx-proxy
@@ -22,10 +22,10 @@ services:
     image: jrcs/letsencrypt-nginx-proxy-companion
     restart: always
     volumes:
-      - ./certs:/etc/nginx/certs
-      - ./conf.d:/etc/nginx/conf.d
-      - ./vhost.d:/etc/nginx/vhost.d
-      - ./html:/usr/share/nginx/html
+      - ./data/certs:/etc/nginx/certs
+      - ./data/conf.d:/etc/nginx/conf.d
+      - ./data/vhost.d:/etc/nginx/vhost.d
+      - ./data/html:/usr/share/nginx/html
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - nginx-proxy
