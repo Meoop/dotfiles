@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+  trojan:
+    image: trojangfw/trojan:latest
+    container_name: trojan
+    volumes:
+      - ./config.json:/config/config.json
+      - ../nginx/data/certs:/etc/certs
+    restart: always
+    environment:
+      - VIRTUAL_HOST=trojan.meoop.me
+      - HTTPS_METHOD=nohttps
+      - LETSENCRYPT_HOST=trojan.meoop.me
+      - LETSENCRYPT_EMAIL=yilei108@gmail.com
+    ports:
+      - 8443:8443
+    expose:
+      - "8443"
+    networks:
+      - nginx-proxy
+      - default
+
+networks:
+  nginx-proxy:
+    external:
+      name: nginx-proxy
