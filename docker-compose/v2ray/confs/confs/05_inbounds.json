@@ -1,0 +1,35 @@
+{
+    "inbounds": [
+        {
+            "listen": "127.0.0.1",
+            "port": 9091,
+            "protocol": "dokodemo-door",
+            "settings": {
+                "address": "127.0.0.1"
+            },
+            "tag": "api"
+        },
+        {
+            "listen": "0.0.0.0",
+            "port": 9090,
+            "protocol": "vmess",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                        "level": 0,
+                        "alterId": 60,
+                        "email": "yilei@yilei.dev"
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "ws",
+                "security": "none",
+                "wsSettings": {
+                    "path": "/mysjz"
+                }
+            }
+        }
+    ]
+}

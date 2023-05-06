@@ -1,0 +1,31 @@
+{
+    "routing": {
+        "domainStrategy": "AsIs",
+        "rules": [
+            {
+                "type": "field",
+                "inboundTag": [
+                    "api"
+                ],
+                "outboundTag": "api"
+            },
+            {
+                "type": "field",
+                "outboundTag": "chatgpt_proxy",
+                "domain": [
+                    "ip138.com",
+                    "chat.openai.com",
+                    "domain: openai.com",
+                    "domain: ai.com"
+                ]
+            },
+            {
+                "type": "field",
+                "ip": [
+                    "geoip:private"
+                ],
+                "outboundTag": "blocked"
+            }
+        ]
+    }
+}

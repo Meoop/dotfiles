@@ -1,8 +1,8 @@
-version: '3.7'
+version: '3.9'
 
 services:
   nginx-proxy:
-    image: jwilder/nginx-proxy:alpine
+    image: nginxproxy/nginx-proxy
     restart: always
     ports:
       - 80:80
@@ -18,14 +18,16 @@ services:
     networks:
       - nginx-proxy
 
-  letsencrypt-companion:
-    image: jrcs/letsencrypt-nginx-proxy-companion
+  nginx-proxy-acme:
+    image: nginxproxy/acme-companion
     restart: always
+    environment:
+      - DEFAULT_EMAIL=yilei108@gmail.com
+    volumes_from:
+      - nginx-proxy
     volumes:
-      - ./data/certs:/etc/nginx/certs
-      - ./data/conf.d:/etc/nginx/conf.d
-      - ./data/vhost.d:/etc/nginx/vhost.d
-      - ./data/html:/usr/share/nginx/html
+      - ./data/certs:/etc/nginx/certs:rw
+      - ./data/acme:/etc/acme.sh
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - nginx-proxy

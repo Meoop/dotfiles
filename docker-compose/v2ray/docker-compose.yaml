@@ -4,11 +4,12 @@ services:
   v2ray:
     build: .
     volumes:
-      - ./config.json:/etc/v2ray/config.json
+      - ./confs:/etc/v2ray/confs
+      # - ./config.json:/etc/v2ray/config.json
     restart: always
     environment:
-      - VIRTUAL_HOST=yar2v.meoop.me
-      - LETSENCRYPT_HOST=yar2v.meoop.me
+      - VIRTUAL_HOST=yar2v.yilei.dev
+      - LETSENCRYPT_HOST=yar2v.yilei.dev
       - LETSENCRYPT_EMAIL=yilei108@gmail.com
     expose:
       - "9090"

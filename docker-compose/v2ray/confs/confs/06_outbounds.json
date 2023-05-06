@@ -1,0 +1,26 @@
+{
+    "outbounds": [
+        {
+            "protocol": "freedom",
+            "tag": "direct",
+            "settings": {}
+        },
+        {
+            "protocol": "socks",
+            "tag": "chatgpt_proxy",
+            "settings": {
+                "servers": [
+                    {
+                        "address": "127.0.0.1",
+                        "port": 40000
+                    }
+                ]
+            }
+        },
+        {
+            "protocol": "blackhole",
+            "tag": "blocked",
+            "settings": {}
+        }
+    ]
+}
