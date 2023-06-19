@@ -48,8 +48,8 @@ filetype plugin indent on
 " ---------------------------------------------------------------------------
 "  Base Option
 " ---------------------------------------------------------------------------
-set background=dark
-colorscheme gruvbox
+set background=light
+colorscheme one
 set t_Co=256                    " enable 256 colors
 set encoding=utf-8 nobomb       " Use UTF-8 without BOM
 set nohidden                    " Don't allow buffers to exist in the background

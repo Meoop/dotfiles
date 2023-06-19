@@ -1,0 +1,56 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "fedora/32-cloud-base"
+  config.vm.box_version = "32.20200422.0"
+
+  config.vm.hostname = "develop-fedora32"
+
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+  config.vm.synced_folder "/Users/lei/go/src", "/root/go/src"
+
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 4096
+    v.cpus = 2
+  end
+  
+  config.vm.provision "shell", inline: <<-SHELL
+    set -e -x -u
+
+    # install develop utils
+    echo "install  ......"
+    dnf install -y golang make gcc bash-completion 
+    
+    # install docker
+    echo "install docker ......"
+    dnf remove -y docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-selinux \
+                  docker-engine-selinux \
+                  docker-engine
+
+    dnf -y install dnf-plugins-core
+    dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+    sed -i 's/$releasever/31/g' /etc/yum.repos.d/docker-ce.repo
+    dnf install -y docker-ce docker-ce-cli containerd.io
+    grubby --update-kernel=ALL --args="systemd.unified_cgroup_hierarchy=0"
+
+    systemctl enable docker && systemctl start docker
+    usermod -aG docker vagrant
+  
+    echo 'disable swap ......'
+    swapoff -a
+    sed -i '/swap/s/^/#/' /etc/fstab
+
+  SHELL
+
+  config.vm.provision "reload"
+
+  config.ssh.username = "root"
+end
